@@ -1,45 +1,41 @@
-<script setup>
-import Table from "@/components/Table.vue";
-import Loading from "@/components/Loading.vue";
-</script>
+<template>
+    <main>
+        <div v-if="loading" class="mt">
+            <Loading :loading="loading" />
+        </div>
+        <Table v-else :listdata="clients" :updateComponent="getUsers" />
+    </main>
+</template>
 
 <script>
+import { onMounted } from "vue";
+import Table from "@/components/Table.vue";
+import Loading from "@/components/Loading.vue";
+
+import useFetch from "../composables/useFetch";
+
 export default {
-  data() {
-    return {
-      clients: [],
-      loading: true,
-    };
-  },
-  mounted() {
-    this.getData();
-  },
-  methods: {
-    getData() {
-      fetch(
-        process.env.NODE_ENV === "development"
-          ? "http://localhost:8888"
-          : "192.168.0.1:8888"
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.clients = data;
-          this.loading = false;
-        })
-        .catch((err) => {
-          console.log(err);
-          this.loading = false;
-        });
+    components: {
+        Table,
+        Loading,
     },
-  },
+    setup() {
+        const { results, hasErrors, loading, execute } = useFetch();
+
+        function getUsers() {
+            execute("http://localhost:8181/users");
+        }
+
+        onMounted(() => {
+            getUsers();
+        });
+
+        return {
+            clients: results,
+            loading,
+            hasErrors,
+            getUsers
+        };
+    },
 };
 </script>
-
-<template>
-  <main>
-    <div v-if="loading" class="mt">
-      <Loading :loading="loading" />
-    </div>
-    <Table v-else :listdata="clients" :updateComponent="getData" />
-  </main>
-</template>

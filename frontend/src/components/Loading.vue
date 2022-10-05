@@ -1,14 +1,15 @@
-<script>
-export default {
-  props: {
-    loading: Boolean,
-  },
-};
-</script>
-
 <template>
   <div v-if="loading" class="loader"></div>
 </template>
+
+<script>
+  export default {
+    props: {
+      loading: Boolean,
+    },
+  };
+  </script>
+
 
 <style scoped>
 .loader {

@@ -1,28 +1,34 @@
-import UserRepository from '../repositories/userRepository';
+const UserRepository = require('../repositories/userRepository');
 
-export class UserService {
+class UserService {
   constructor() {
-    this.userRepository = new UserRepository()
+    this.userRepository = new UserRepository();
   }
 
   async getAll() {
     const result = await this.userRepository.findAll();
-    return result
+    return result;
   }
-  async getById(param) {
-    const result = await this.userRepository.findById(param);;
-    return result
+
+  async getById(id) {
+    const result = await this.userRepository.findById(id);
+    return result;
   }
-  async post(param) {
-    const result = await this.userRepository.createUser(param);
-    return result
+
+  async createUser(user) {
+    const result = await this.userRepository.createUser(user);
+    return result;
   }
-  async put(id, body) {
+
+  async updateUser(id, body) {
     const result = await this.userRepository.update(id, body);
-    return result
+    return result;
   }
-  async delete(id) {
+
+  async deleteUser(id) {
     const result = await this.userRepository.remove(id);
-    return result
+    return result;
   }
 }
+
+module.exports = UserService;
