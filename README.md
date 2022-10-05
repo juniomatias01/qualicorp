@@ -14,25 +14,36 @@ I had already made a NodeJS api with frontend in Vue before. I followed the patt
 ## difficulties
 
 ## Project Setup
-```sh
-```
+
 ### Clone the repository
 $ git clone https://github.com/juniomatias01/qualicorp.git
 ### Go to project folder
-$ cd frontEnd
+```sh
+cd frontEnd
+```
 ### Install front-end dependecies
-$ npm install
+```sh
+npm install
+```
 ### Run front-end
-$ npm run dev
+```sh
+npm run dev
+```
 ### Return to the project root
-$ cd ..
+```sh
+cd ..
+```
 ### Install back-end dependecies
-$ cd backEnd
-
-$ npm install
+```sh
+cd backEnd
+```
+```sh
+npm install
+```
 ### Run back-end api
-$ npm run dev
-
+```sh
+npm run dev
+```
 ### Compile and Hot-Reload for Development
 
 ```sh
